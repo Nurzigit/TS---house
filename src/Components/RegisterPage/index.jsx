@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const RegisterPage = () => {
+const RegisterPage = ({setUser}) => {
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +18,7 @@ const RegisterPage = () => {
 
     const isAdmin = email === 'nurzigitturman@gmail.com';
 
-    const response = await fetch('/api/auth/register', {
+    const response = await fetch('http://localhost:8000/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -31,6 +31,15 @@ const RegisterPage = () => {
     });
 
     if (response.ok) {
+      const data = await response.json();
+
+      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('token', data.token);
+
+    
+      setUser(data.user);
+
+
       window.location.href = '/main';
     }
   };

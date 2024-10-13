@@ -1,19 +1,35 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const LoginPage = ({setUser}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch('http://localhost:8000/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
     if (response.ok) {
-      window.location.href = '/main';
+      try {
+        const data = await response.json();
+        localStorage.setItem('user', JSON.stringify(data.user)); 
+        
+        setUser(data.user); 
+        navigate('/main');
+        
+      } catch (error) {
+        console.error("Ошибка парсинга данных:", error);
+      }
+    } else {
+      const errorMessage = await response.text(); 
+      alert(errorMessage);
     }
+
+    
   };
 
   return (
@@ -38,3 +54,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+
