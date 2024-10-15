@@ -17,6 +17,8 @@ const LoginPage = ({setUser}) => {
       try {
         const data = await response.json();
         localStorage.setItem('user', JSON.stringify(data.user)); 
+        localStorage.setItem('token', data.token);
+
         
         setUser(data.user); 
         navigate('/main');
