@@ -15,7 +15,7 @@ const AddCardPage = ({ user }) => {
         image,
         title,
         description,
-        userId: user._id, 
+        userId: user._id, // Связываем карточку с пользователем
       })
     });
 

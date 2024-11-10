@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Header } from '../Header';
+import { Footer } from '../Footer';
 
 const FavoritesPage = ({ user }) => {
   const [favoriteCards, setFavoriteCards] = useState([]);
@@ -15,10 +17,9 @@ const FavoritesPage = ({ user }) => {
   }, [user]);
 
   return (
+
     <div className="favorites-page">
-      <header>
-        <h1>Избранные карточки</h1>
-      </header>
+       <Header user={user}/>
       <div className="cards">
         {favoriteCards.map((card) => (
           <div key={card._id} className="card">
@@ -28,8 +29,11 @@ const FavoritesPage = ({ user }) => {
           </div>
         ))}
       </div>
+      <Footer user={user}/>
     </div>
+    
   );
+  
 };
 
 export default FavoritesPage;
