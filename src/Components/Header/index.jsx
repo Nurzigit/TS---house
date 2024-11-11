@@ -9,6 +9,7 @@ export const Header = ({ user }) => {
         "Новое сообщение от друга",
         "Обновление в вашем избранном",
         "Новое событие в сообществе",
+        "Новое событие в сообществе",
       ]);
     };
     fetchNotifications();
@@ -44,6 +45,11 @@ export const Header = ({ user }) => {
               <a href="/add">Добавление</a>
             </li>
           )}
+          {(user.role === "admin") && (
+            <li>
+              <a href="/notify">Отправить сообщение</a>
+            </li>
+          )}
           <li>
             <a href="/settings">Настройки</a>
           </li>
@@ -68,11 +74,11 @@ export const Header = ({ user }) => {
 
         <div className="notifications">
           <span>Уведомления ({notifications.length})</span>
-          <ul>
+          {/* <ul>
             {notifications.map((notif, index) => (
               <li key={index}>{notif}</li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
     </header>

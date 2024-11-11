@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
+import "./style.css"
 
 const MainPage = ({ user }) => {
   const [cards, setCards] = useState([]);
@@ -34,7 +35,7 @@ const MainPage = ({ user }) => {
   return (
     <div className="main-page">
       <Header user={user} />
-
+ 
       <main>
         <h1>Добро пожаловать, {user.nickname}!</h1>
 
@@ -56,6 +57,11 @@ const MainPage = ({ user }) => {
       </main>
 
       <Footer user={user} />
+
+      <script src="three.r134.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js"></script>
+      <script src="./vanta/index.js"></script>
+      
     </div>
   );
 };

@@ -1,0 +1,78 @@
+/* Основные стили для страницы регистрации */
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  .register__container {
+    display: flex;
+    width: 1000px;
+    height: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .register__image {
+    flex: 1;
+    background-image: url('https://w0.peakpx.com/wallpaper/350/246/HD-wallpaper-study-motivation-just-study-and-revise-book-and-pen.jpg'); /* Замените на реальный URL изображения */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .register__form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    background-color: white;
+  }
+  
+  .register__form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .register__form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register__form input,
+  .register__form select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  
+  .register__form button {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: aqua;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .register__form button:hover {
+    transition: all 0.5s;
+    background-color: blue;
+    color: white;
+  }
+ 
+  .register__p {
+    margin-top: 10px;
+  }

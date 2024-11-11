@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, Link } from 'react-router-dom';
+import "./styles/style.css"
 const LoginPage = ({setUser}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,23 +35,36 @@ const LoginPage = ({setUser}) => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      />
-      <button type="submit">Войти</button>
-    </form>
+    <div className={'login'}>
+     <div className="login__container">
+        <div className="login__image">
+          {/* Вставьте изображение, используя путь к вашему файлу */}
+          <img src="https://w0.peakpx.com/wallpaper/350/246/HD-wallpaper-study-motivation-just-study-and-revise-book-and-pen.jpg" alt="Login Visual" />
+        </div>
+        <div className="login__form">
+          <form onSubmit={handleLogin}>
+            <h2>Вход</h2>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
+            />
+            <button type="submit">Войти</button>
+          </form>
+
+          <p className={'login_p'}>Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></p>
+        </div>
+      </div>
+    </div>
   );
 };
 

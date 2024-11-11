@@ -6,6 +6,10 @@ import RegisterPage from "./Components/RegisterPage";
 import MainPage from "./Components/MainPage";
 import FavoritesPage from "./Components/FavoritesPage";
 import AddCardPage from "./Components/AddCardPage";
+import { TopsPage } from "./Components/TopsPage";
+import { Notification } from "./Components/NotificationPage";
+import "./App.css";
+
 
 function App() {
   const [user, setUser] = useState("");
@@ -56,6 +60,22 @@ function App() {
         element={
           <ProtectedRoute>
             <FavoritesPage user={user} />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/top"
+        element={
+          <ProtectedRoute>
+            <TopsPage user={user} />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/notify"
+        element={
+          <ProtectedRoute>
+            <Notification user={user} />
           </ProtectedRoute>
         }
       />
