@@ -58,7 +58,11 @@ const FavoritesPage = ({ user }) => {
 
   useEffect(() => {
     const fetchFavoriteCards = async () => {
+<<<<<<< HEAD
       const response = await axios.get("http://localhost:8000/api/cards/all");
+=======
+      const response = await fetch("http://localhost:8000/api/cards/all");
+>>>>>>> b1f119e7aef1622d61886975efb460600a17ca26
       const userFavorites = response.data.filter(
         (card) => card.isFavorite === true // Фильтрация по конкретному пользователю
       );
