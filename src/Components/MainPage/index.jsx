@@ -1,16 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
-import "./style.css"
+import { Loader } from "../Loader";
+import Card from "../Card";
+import AdditionalHeader from "../AdditionalHeader";
+import "./styles/style.css";
 
 const MainPage = ({ user }) => {
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const fetchCards = async () => {
+
+  //     const response = await fetch("http://localhost:8000/api/cards/all");
+  //     const data = await response.json();
+  //     setCards(data);
+  //   };
+
+  //   fetchCards();
+  // }, []);
 
   useEffect(() => {
     const fetchCards = async () => {
-      const response = await fetch("http://localhost:8000/api/cards/all");
-      const data = await response.json();
-      setCards(data);
+      setIsLoading(true); 
+      try {
+        const response = await fetch("http://localhost:8000/api/cards/all");
+        const data = await response.json();
+        setCards(data);
+      } catch (error) {
+        console.error("Ошибка при загрузке карточек:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchCards();
@@ -34,34 +56,34 @@ const MainPage = ({ user }) => {
 
   return (
     <div className="main-page">
-      <Header user={user} />
- 
-      <main>
-        <h1>Добро пожаловать, {user.nickname}!</h1>
+      <div className="main-page_header">
+        <Header user={user} />
+      </div>
 
-        <div className="cards">
-          {cards.map((card) => (
-            <div key={card._id} className="card">
-              <img src={card.image} alt={card.title} />
-              <h3>{card.title}</h3>
-              <p>{new Date(card.date).toLocaleString()}</p>
-              <button onClick={() => handleFavoriteToggle(card._id)}>
-                {card.isFavorite ? "Unfavorite" : "Favorite"}
-              </button>
-              <button onClick={() => alert(`Description: ${card.description}`)}>
-                Подробнее
-              </button>
-            </div>
-          ))}
-        </div>
-      </main>
+      <div className="main">
+        <AdditionalHeader user={user} />
+        <main>
+          <h1 className="main__text">Все объявление:</h1>
 
-      <Footer user={user} />
-
-      <script src="three.r134.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js"></script>
-      <script src="./vanta/index.js"></script>
-      
+          <div className="cards">
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <div className="cards__all">
+                {cards.map((card) => (
+                  <Card
+                    key={card._id}
+                    card={card}
+                    onFavorite={handleFavoriteToggle}
+                    user={user}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          <Footer user={user} />
+        </main>
+      </div>
     </div>
   );
 };

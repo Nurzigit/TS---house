@@ -1,20 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import "./styles/style.css";
 
 export const Header = ({ user }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [notifications, setNotifications] = useState([]);
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      setNotifications([
-        "Новое сообщение от друга",
-        "Обновление в вашем избранном",
-        "Новое событие в сообществе",
-        "Новое событие в сообществе",
-      ]);
-    };
-    fetchNotifications();
-  }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -22,64 +10,110 @@ export const Header = ({ user }) => {
   };
 
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <a href="/main">Домашняя страница</a>
-          </li>
-          <li>
-            <a href="/favorites">Избранное</a>
-          </li>
-          <li>
-            <a href="/top">Топе</a>
-          </li>
-          <li>
-            <a href="/settling">Заселение</a>
-          </li>
-          <li>
-            <a href="/community">Сообщество</a>
-          </li>
-          {(user.role === "admin" || user.role === "advertiser") && (
-            <li>
-              <a href="/add">Добавление</a>
-            </li>
-          )}
-          {(user.role === "admin") && (
-            <li>
-              <a href="/notify">Отправить сообщение</a>
-            </li>
-          )}
-          <li>
-            <a href="/settings">Настройки</a>
-          </li>
-          <li>
-            <button onClick={handleLogout}>Logout</button>
-          </li>
-        </ul>
-      </nav>
+    <header className="header">
 
-      <div className="user-info">
-        <span>
-          Nickname: {user.nickname} {user.role}
-        </span>
-
-        <input
-          type="text"
-          placeholder="Поиск..."
-          className="search-bar"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-
-        <div className="notifications">
-          <span>Уведомления ({notifications.length})</span>
-          {/* <ul>
-            {notifications.map((notif, index) => (
-              <li key={index}>{notif}</li>
-            ))}
-          </ul> */}
+      <div className="header__inner">
+        <div className="header__inner-logo">
+          <li className="logo">
+            <Link to="/main">TS_House</Link>
+            <div className="mobile_logo">
+              <img src="/Images/Header/TS.svg" alt="" />
+            </div>
+          </li>
         </div>
+        <div className="header__inner-links">
+          <Link to="/main">
+            <li className="link">
+              <img className="link_icon" src="/Images/Header/home.png" alt="" />
+              <span>Домашняя страница</span>
+            </li>
+          </Link>
+          <Link to="/favorites">
+            <li className="link">
+              <img
+                className="link_icon"
+                src="/Images/Header/heart.svg"
+                alt=""
+              />
+              <span>Избранное</span>
+            </li>
+          </Link>
+          <Link to="/top">
+            <li className="link">
+              <img
+                className="link_icon"
+                src="/Images/Header/trending-up.svg"
+                alt=""
+              />
+             <span>Топе</span>
+            </li>
+          </Link>
+          <Link to="/settling">
+            <li className="link">
+              <img
+                className="link_icon"
+                src="/Images/Header/bunk-2.png"
+                alt=""
+              />
+              <span>Заселение</span>
+            </li>
+          </Link>
+          <Link to="/community">
+            <li className="link">
+              <img
+                className="link_icon"
+                src="/Images/Header/message-circle.svg"
+                alt=""
+              />
+              <span>Сообщество</span>
+            </li>
+          </Link>
+          {(user.role === "admin" || user.role === "advertiser") && (
+            <Link to="/add">
+              <li className="link">
+                <img
+                  className="link_icon"
+                  src="/Images/Header/add.png"
+                  alt=""
+                />
+                <span>Добавление</span>
+              </li>
+            </Link>
+          )}
+          {user.role === "admin" && (
+            <Link to="/notify">
+              <li className="link">
+                <img
+                  className="link_icon"
+                  src="/Images/Header/mail.png"
+                  alt=""
+                />
+                <span>Отправить сообщение</span>
+              </li>
+            </Link>
+          )}
+        </div>
+      </div>
+      <div className="header__btns">
+        <Link to="/settings">
+          <li className="link">
+            <img
+              className="link_icon"
+              src="/Images/Header/sliders.svg"
+              alt=""
+            />
+            <span>Настройки</span>
+          </li>
+        </Link>
+        <li className="link_logout">
+          <img
+            onClick={handleLogout}
+            className="link_icon"
+            src="/Images/Header/logout.png"
+            alt=""
+          />
+          <span onClick={handleLogout}>Logout</span>
+        </li>
       </div>
     </header>
   );

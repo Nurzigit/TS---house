@@ -3,6 +3,9 @@ import axios from "axios";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 import Card from "../Card";
+import AdditionalHeader from "../AdditionalHeader";
+import "./styles/style.css"
+
 
 // const FavoritesPage = ({ user }) => {
 //   const [favoriteCards, setFavoriteCards] = useState([]);
@@ -22,7 +25,7 @@ import Card from "../Card";
 //     };
 
 //     fetchFavoriteCards();
-    
+
 //   }, [user]);
 
 //   const handleFavorite = (cardId) => {
@@ -33,7 +36,6 @@ import Card from "../Card";
 //     );
 //   };
 
-  
 //   return (
 //     <div className="favorites-page">
 //       <Header user={user} />
@@ -52,22 +54,18 @@ import Card from "../Card";
 //   );
 // };
 
-
 const FavoritesPage = ({ user }) => {
   const [favoriteCards, setFavoriteCards] = useState([]);
 
   useEffect(() => {
     const fetchFavoriteCards = async () => {
-<<<<<<< HEAD
       const response = await axios.get("http://localhost:8000/api/cards/all");
-=======
-      const response = await fetch("http://localhost:8000/api/cards/all");
->>>>>>> b1f119e7aef1622d61886975efb460600a17ca26
+
       const userFavorites = response.data.filter(
         (card) => card.isFavorite === true // Фильтрация по конкретному пользователю
       );
 
-      console.log(response.data.map(arr => arr.userId))
+      console.log(response.data.map((arr) => arr.userId));
       setFavoriteCards(userFavorites);
     };
 
@@ -76,33 +74,40 @@ const FavoritesPage = ({ user }) => {
 
   const handleFavorite = async (cardId) => {
     try {
-      const response = await axios.put(`http://localhost:8000/api/cards/favorite/${cardId}`);
-      console.log(response)
+      const response = await axios.put(
+        `http://localhost:8000/api/cards/favorite/${cardId}`
+      );
+      console.log(response);
       // Обновляем избранные карточки на клиенте
-      setFavoriteCards((prevFavorites) =>
-        prevFavorites.filter((card) => card._id !== cardId) // Убираем или добавляем карточку в список
+      setFavoriteCards(
+        (prevFavorites) => prevFavorites.filter((card) => card._id !== cardId) // Убираем или добавляем карточку в список
       );
     } catch (error) {
-      console.error('Error updating favorite status:', error);
+      console.error("Error updating favorite status:", error);
     }
   };
 
-
-
   return (
     <div className="favorites-page">
-      <Header user={user} />
-      <div className="cards">
-        {favoriteCards.map((card) => (
-          <Card
-            key={card._id}
-            card={card}
-            onFavorite={handleFavorite}
-            user={user}
-          />
-        ))}
+      <div className="favorites-page-header">
+        <Header user={user} />
       </div>
-      <Footer user={user} />
+
+      <div className="favorites-page-cards">
+      <AdditionalHeader user={user} />
+      <h1>Избранные:</h1>
+        <div className="cards">
+          {favoriteCards.map((card) => (
+            <Card
+              key={card._id}
+              card={card}
+              onFavorite={handleFavorite}
+              user={user}
+            />
+          ))}
+        </div>
+        <Footer user={user} />
+      </div>
     </div>
   );
 };

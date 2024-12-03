@@ -43,7 +43,7 @@ const LoginPage = ({setUser}) => {
         </div>
         <div className="login__form">
           <form onSubmit={handleLogin}>
-            <h2>Вход</h2>
+            <h2 className='login__form-text'>Вход</h2>
             <input
               type="email"
               value={email}

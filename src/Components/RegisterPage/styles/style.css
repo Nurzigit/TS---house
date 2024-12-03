@@ -4,14 +4,14 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f2f5;
+    background: linear-gradient(90deg, rgba(68,49,122,1) 0%, rgba(10,4,40,1) 22%, rgba(0,0,0,1) 100%);
   }
   
   .register__container {
     display: flex;
     width: 1000px;
     height: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 10px 20px 10px rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     overflow: hidden;
   }
@@ -75,4 +75,5 @@
  
   .register__p {
     margin-top: 10px;
+    color: black;
   }

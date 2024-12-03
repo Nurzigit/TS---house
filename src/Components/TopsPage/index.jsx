@@ -1,12 +1,21 @@
 import React from "react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
-export const TopsPage = ({user}) => {
+import AdditionalHeader from "../AdditionalHeader";
+import "./styles/style.css"
+
+
+export const TopsPage = ({ user }) => {
   return (
-    <>
-      <Header user={user} />
+    <div className="tops-page">
+      <div className="tops-page__header">
+        <Header user={user} />
+      </div>
+      <div className="tops-page__main">
+      <AdditionalHeader user={user} />
         <h1>Hello tops pages</h1>
-      <Footer user={user} />
-    </>
+        <Footer user={user} />
+      </div>
+    </div>
   );
 };
