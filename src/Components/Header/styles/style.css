@@ -2,7 +2,6 @@
   width: 100%;
   height: 100%;
   background-color: #21201e;
-  border: 1px solid black;
   box-shadow: 5px 0px 50px #6100c2;
   display: flex;
   flex-direction: column;
@@ -131,6 +130,9 @@
 }
 
 @media (max-width: 968px) {
+  .header {
+    position: fixed;
+  }
   .logo > a {
     display: none;
   }
