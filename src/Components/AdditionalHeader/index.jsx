@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Badge from "@mui/material/Badge";
 import "./styles/style.css";
+import { Link } from "react-router-dom";
+
 const AdditionalHeader = ({ user }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [notifications, setNotifications] = useState([]);
+
   useEffect(() => {
     const fetchNotifications = async () => {
       setNotifications([
@@ -17,6 +20,7 @@ const AdditionalHeader = ({ user }) => {
     };
     fetchNotifications();
   }, []);
+
   return (
     <div className="user-info">
       <div className="user-info__inner">
@@ -29,9 +33,12 @@ const AdditionalHeader = ({ user }) => {
         />
 
         <div className="notifications">
-          <Badge badgeContent={notifications.length} color="error">
-            <NotificationsIcon />
-          </Badge>
+          <Link to="/notifyforusers">
+            <Badge badgeContent={notifications.length} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </Link>
+
           {/* <ul>
         {notifications.map((notif, index) => (
           <li key={index}>{notif}</li>

@@ -4,8 +4,8 @@
     border: 2px solid white;
     border-radius: 10px;
     overflow: hidden;
-    background-color: #21201e;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 .card_img {

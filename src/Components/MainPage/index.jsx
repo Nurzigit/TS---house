@@ -10,17 +10,6 @@ const MainPage = ({ user }) => {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const fetchCards = async () => {
-
-  //     const response = await fetch("http://localhost:8000/api/cards/all");
-  //     const data = await response.json();
-  //     setCards(data);
-  //   };
-
-  //   fetchCards();
-  // }, []);
-
   useEffect(() => {
     const fetchCards = async () => {
       setIsLoading(true); 

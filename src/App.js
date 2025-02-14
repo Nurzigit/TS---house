@@ -8,8 +8,8 @@ import FavoritesPage from "./Components/FavoritesPage";
 import AddCardPage from "./Components/AddCardPage";
 import { TopsPage } from "./Components/TopsPage";
 import { Notification } from "./Components/NotificationPage";
+import { NotificationForUser } from "./Components/NotificationForUsers";
 import "./App.css";
-
 
 function App() {
   const [user, setUser] = useState("");
@@ -76,6 +76,14 @@ function App() {
         element={
           <ProtectedRoute>
             <Notification user={user} />
+          </ProtectedRoute>
+        }
+      />
+       <Route
+        path="/notifyforusers"
+        element={
+          <ProtectedRoute>
+            <NotificationForUser user={user} />
           </ProtectedRoute>
         }
       />

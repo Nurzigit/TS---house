@@ -11,15 +11,19 @@ export const Header = ({ user }) => {
 
   return (
     <header className="header">
-
       <div className="header__inner">
         <div className="header__inner-logo">
-          <li className="logo">
-            <Link to="/main">TS_House</Link>
-            <div className="mobile_logo">
-              <img src="/Images/Header/TS.svg" alt="" />
-            </div>
-          </li>
+          <Link to="/main">
+            <li className="logo">
+              <div className="header__inner-logo-img">
+                <img src="/Images/Header/bg_ts_house.png" alt="" />
+                <span>TS_HOUSE</span>
+              </div>
+              <div className="mobile_logo">
+                <img src="/Images/Header/bg_ts_house.png" alt="" />
+              </div>
+            </li>
+          </Link>
         </div>
         <div className="header__inner-links">
           <Link to="/main">
@@ -45,7 +49,7 @@ export const Header = ({ user }) => {
                 src="/Images/Header/trending-up.svg"
                 alt=""
               />
-             <span>Топе</span>
+              <span>Топе</span>
             </li>
           </Link>
           <Link to="/settling">
@@ -94,7 +98,7 @@ export const Header = ({ user }) => {
           )}
         </div>
       </div>
-      <div className="header__btns">
+      <div className="header__need-btns">
         <Link to="/settings">
           <li className="link">
             <img
