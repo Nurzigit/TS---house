@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
+import { useNotifications } from "../../context/NotificationContext";
 import AdditionalHeader from "../AdditionalHeader";
 import "./styles/style.css";
 
 export const NotificationForUser = ({ user }) => {
-  const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
-    fetchMessages();
-  }, []);
-
-  const fetchMessages = async () => {
-    const response = await fetch("http://localhost:8000/api/messages");
-    const data = await response.json();
-    setMessages(data);
-  };
+  const { messages } = useNotifications();
 
   return (
     <div className="notification-forUser ">
@@ -23,7 +15,7 @@ export const NotificationForUser = ({ user }) => {
         <Header user={user} />
       </div>
       <div className="notification-forUser__main">
-        <AdditionalHeader user={user} messages={messages} />
+        <AdditionalHeader user={user} />
         <div className="messages-list">
           {messages.map((message) => (
             <div key={message._id} className="message-item">

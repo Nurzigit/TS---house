@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Badge from "@mui/material/Badge";
-import "./styles/style.css";
 import { Link } from "react-router-dom";
+import "./styles/style.css";
 
 const AdditionalHeader = ({ user }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,13 +10,9 @@ const AdditionalHeader = ({ user }) => {
 
   useEffect(() => {
     const fetchNotifications = async () => {
-      setNotifications([
-        "Новое сообщение от друга",
-        "Обновление в вашем избранном",
-        "Новое событие в сообществе",
-        "Новое событие в сообществе",
-        "Новое событие в сообществе",
-      ]);
+      const response = await fetch("http://localhost:8000/api/messages");
+      const data = await response.json();
+      setNotifications(data);
     };
     fetchNotifications();
   }, []);

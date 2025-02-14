@@ -1,3 +1,4 @@
+// Importing React and other important libraries
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import WelcomePage from "./Components/WelcomePage";
@@ -9,6 +10,12 @@ import AddCardPage from "./Components/AddCardPage";
 import { TopsPage } from "./Components/TopsPage";
 import { Notification } from "./Components/NotificationPage";
 import { NotificationForUser } from "./Components/NotificationForUsers";
+
+
+// Context
+import { NotificationProvider } from "./context/NotificationContext";
+
+// Styles
 import "./App.css";
 
 function App() {
@@ -16,21 +23,17 @@ function App() {
 
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
-    const token = localStorage.getItem('token'); 
+    const token = localStorage.getItem("token");
     if (savedUser && token) {
       setUser(savedUser);
     }
   }, []);
 
-  // const ProtectedRoute = ({ element: Component, ...rest }) => {
-  //   return user ? <Component {...rest} user={user} /> : <Navigate to="/login" />;
-  // };
-
   const ProtectedRoute = ({ children }) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const token = localStorage.getItem('token');
-    
-    return (user && token) ? children : <Navigate to="/login" />;
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
+    return user && token ? children : <Navigate to="/login" />;
   };
 
   return (
@@ -75,18 +78,23 @@ function App() {
         path="/notify"
         element={
           <ProtectedRoute>
-            <Notification user={user} />
+            <NotificationProvider user={user}>
+              <Notification user={user} />
+            </NotificationProvider>
           </ProtectedRoute>
         }
       />
-       <Route
+      <Route
         path="/notifyforusers"
         element={
           <ProtectedRoute>
-            <NotificationForUser user={user} />
+            <NotificationProvider user={user}>
+              <NotificationForUser user={user} />
+            </NotificationProvider>
           </ProtectedRoute>
         }
       />
+
     </Routes>
   );
 }

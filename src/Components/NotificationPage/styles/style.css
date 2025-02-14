@@ -1,13 +1,150 @@
+
+
+/* Основные стили для страницы */
 .notification-page {
   width: 100%;
   display: flex;
-  height: 100svh;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #333;
 }
-
 .notification-page__header {
   width: 15%;
 }
 
 .notification-page__main {
   width: 85%;
+}
+
+
+/* Основное содержимое */
+.notification-page__main {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Заголовок */
+.notification-page__title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.notification-page__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Форма */
+.notification-page__form {
+  width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification-page__form input,
+.notification-page__form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.notification-page__form textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+/* Кнопка отправки */
+.notification-page__form button {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.notification-page__form button:hover {
+  background: #2980b9;
+}
+
+/* Список сообщений */
+.messages-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.message-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  transition: transform 0.2s ease;
+  width: 600px;
+}
+
+.message-item:hover {
+  transform: scale(1.02);
+}
+
+/* Изображение сообщения */
+.message-item img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Заголовок и описание */
+.message-item h3 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-top: 10px;
+}
+
+.message-item p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Кнопки */
+.message-item button {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.message-item button:hover {
+  background: #c0392b;
+}
+
+.message-item button:nth-child(1) {
+  background: #2ecc71;
+}
+
+.message-item button:nth-child(1):hover {
+  background: #27ae60;
 }
