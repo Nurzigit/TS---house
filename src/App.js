@@ -10,7 +10,7 @@ import AddCardPage from "./Components/AddCardPage";
 import { TopsPage } from "./Components/TopsPage";
 import { Notification } from "./Components/NotificationPage";
 import { NotificationForUser } from "./Components/NotificationForUsers";
-
+import { NotificationDetail } from "./Components/NotificationForUsersDetails";
 
 // Context
 import { NotificationProvider } from "./context/NotificationContext";
@@ -90,6 +90,16 @@ function App() {
           <ProtectedRoute>
             <NotificationProvider user={user}>
               <NotificationForUser user={user} />
+            </NotificationProvider>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/notifyforusers/:messageId"
+        element={
+          <ProtectedRoute>
+            <NotificationProvider user={user}>
+              <NotificationDetail user={user} />
             </NotificationProvider>
           </ProtectedRoute>
         }
