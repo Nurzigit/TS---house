@@ -45,6 +45,7 @@ const MainPage = ({ user }) => {
 
   return (
     <div className="main-page">
+      {isLoading && <Loader />}
       <div className="main-page_header">
         <Header user={user} />
       </div>
@@ -55,9 +56,7 @@ const MainPage = ({ user }) => {
           <h1 className="main__text">Все объявление:</h1>
 
           <div className="cards">
-            {isLoading ? (
-              <Loader />
-            ) : (
+           
               <div className="cards__all">
                 {cards.map((card) => (
                   <Card
@@ -68,7 +67,7 @@ const MainPage = ({ user }) => {
                   />
                 ))}
               </div>
-            )}
+          
           </div>
           <Footer user={user} />
         </main>

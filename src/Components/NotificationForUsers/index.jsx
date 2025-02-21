@@ -4,14 +4,16 @@ import { Footer } from "../Footer";
 import { useNotifications } from "../../context/NotificationContext";
 import AdditionalHeader from "../AdditionalHeader";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "../Loader";
 import "./styles/style.css";
+
 
 export const NotificationForUser = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLetter, setSelectedLetter] = useState("");
   const [sortOrder, setSortOrder] = useState("newest");
   const navigate = useNavigate();
-  const { messages } = useNotifications();
+  const { messages, isLoading } = useNotifications();
 
   const filteredMessages = messages
     .filter((message) =>
@@ -30,6 +32,7 @@ export const NotificationForUser = ({ user }) => {
 
   return (
     <div className="notification-page">
+      {isLoading && <Loader />}
       <div className="notification-page__header">
         <Header user={user} />
       </div>

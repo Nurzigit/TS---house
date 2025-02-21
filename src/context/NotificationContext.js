@@ -5,14 +5,22 @@ const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children, user }) => {
   const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     loadMessages();
   }, []);
 
   const loadMessages = async () => {
-    const data = await fetchMessages();
-    setMessages(data);
+    setIsLoading(true);
+    try {
+      const data = await fetchMessages();
+      setMessages(data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const addNewMessage = async (formData) => {
@@ -52,7 +60,7 @@ export const NotificationProvider = ({ children, user }) => {
   };
 
   return (
-    <NotificationContext.Provider value={{ messages, addNewMessage, updateExistingMessage, removeMessage }}>
+    <NotificationContext.Provider value={{ messages, addNewMessage, updateExistingMessage, removeMessage, isLoading }}>
       {children}
     </NotificationContext.Provider>
   );
