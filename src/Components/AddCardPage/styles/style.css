@@ -11,3 +11,66 @@
 .add-card__page--main {
     width: 85%;
 }
+
+/* Стили только для add-card__page--main */
+.add-card__page--main-inner {
+  width: 80%;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для формы внутри add-card__page--main */
+.add-card__page--main form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-card__page--main input,
+.add-card__page--main textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-card__page--main textarea {
+  resize: none;
+  height: 100px;
+}
+
+.add-card__page--main button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-card__page--main button:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для превью изображений в add-card__page--main */
+
+.add-card__page--main .image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Карта внутри add-card__page--main */
+.add-card__page--main .ymaps-2-1-79-map {
+  border-radius: 10px;
+  overflow: hidden;
+}

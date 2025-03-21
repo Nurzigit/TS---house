@@ -12,16 +12,14 @@ const FavoritesPage = ({ user }) => {
 
   useEffect(() => {
     const fetchFavoriteCards = async () => {
-      const response = await axios.get("http://localhost:8000/api/cards/all");
-
-      const userFavorites = response.data.filter(
-        (card) => card.isFavorite === true 
-      );
-
-      console.log(response.data.map((arr) => arr.userId));
-      setFavoriteCards(userFavorites);
+      try {
+        const response = await axios.get(`http://localhost:8000/api/cards/${user._id}/favorites`);
+        setFavoriteCards(response.data); // Загружаем только избранные карточки
+      } catch (error) {
+        console.error("Ошибка при загрузке избранных карточек:", error);
+      }
     };
-
+  
     fetchFavoriteCards();
   }, [user]);
 

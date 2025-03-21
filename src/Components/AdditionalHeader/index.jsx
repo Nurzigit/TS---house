@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "./styles/style.css";
 
 const AdditionalHeader = ({ user }) => {
-  const [searchQuery, setSearchQuery] = useState("");
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
@@ -20,14 +19,7 @@ const AdditionalHeader = ({ user }) => {
   return (
     <div className="user-info">
       <div className="user-info__inner">
-        <input
-          type="text"
-          placeholder="Поиск..."
-          className="search-bar"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-
+  
         <div className="notifications">
           <Link to="/notifyforusers">
             <Badge badgeContent={notifications.length} color="error">

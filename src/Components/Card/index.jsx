@@ -5,6 +5,7 @@ import "./styles/style.css";
 
 const Card = ({ card, onFavorite, onDetails }) => {
   
+  console.log(card);
   const isFavorite = card.isFavorite; 
 
   return (
@@ -19,8 +20,8 @@ const Card = ({ card, onFavorite, onDetails }) => {
         </span>
         {card.isTop && <div className="card_img--top">TOP</div>}
         {card.isPremium && <div className="card_img--premium">Premium</div>}
-        {card.image ? (
-          <img src={card.image} alt={card.title} />
+        {card.images ? (
+          <img src={`http://localhost:8000${card.images[0]}`} alt={card.title} />
         ) : (
           <>Нет изображения</>
         )}

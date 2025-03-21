@@ -8,7 +8,7 @@
 .user-info__inner {
   display: flex;
   align-items: center;
-  width: 420px;
+  width: 220px;
   justify-content: space-between;
 }
 .user {

@@ -28,20 +28,26 @@ const MainPage = ({ user }) => {
   }, []);
 
   const handleFavoriteToggle = async (cardId) => {
-    const response = await fetch(
-      `http://localhost:8000/api/cards/favorite/${cardId}`,
-      {
+    try {
+      const response = await fetch(`http://localhost:8000/api/cards/favorite/${cardId}`, {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: user._id }) // Передаём ID пользователя
+      });
+  
+      if (response.ok) {
+        const updatedCard = await response.json();
+        setCards(cards.map((card) =>
+          card._id === cardId ? { ...card, isFavorite: updatedCard.isFavorite } : card
+        ));
       }
-    );
-    if (response.ok) {
-      setCards(
-        cards.map((card) =>
-          card._id === cardId ? { ...card, isFavorite: !card.isFavorite } : card
-        )
-      );
+    } catch (error) {
+      console.error("Ошибка при изменении избранного:", error);
     }
   };
+
 
   return (
     <div className="main-page">
