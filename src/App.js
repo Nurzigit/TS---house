@@ -7,6 +7,8 @@ import RegisterPage from "./Components/RegisterPage";
 import MainPage from "./Components/MainPage";
 import FavoritesPage from "./Components/FavoritesPage";
 import AddCardPage from "./Components/AddCardPage";
+import CardDetails from "./Components/CardDetails";
+import { CardProvider } from "./context/CardContext";
 import { TopsPage } from "./Components/TopsPage";
 import { Notification } from "./Components/NotificationPage";
 import { NotificationForUser } from "./Components/NotificationForUsers";
@@ -104,7 +106,16 @@ function App() {
           </ProtectedRoute>
         }
       />
-
+      <Route
+        path="/card/:id"
+        element={
+          <ProtectedRoute>
+            <CardProvider>
+              <CardDetails user={user} />
+            </CardProvider>
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
